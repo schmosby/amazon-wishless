@@ -27,10 +27,10 @@ class Product:
 		# We need them as numbers in order to sort items etc.
 		# TODO: Probably more reliable to check classes rather than (internal) values
 		prioNumOrLit = li.css( '#itemPriority_' + self.id + '::text' ).get( default = 'MEDIUM' )
-		try:  # str() has no isnumeric() in Python 2, unicode() isnumeric can't negative values; this is rly recommended, sigh:
+		try:  # str() has no isnumeric() in Python 2, unicode() isnumeric can't negative values
 			self.priority = int( prioNumOrLit )
 		except:
-		    	self.priority = { 'LOWEST' : -2,'LOW' : -1, 'MEDIUM' : 0, 'HIGH' : 1, 'HIGHEST' : 2 }[ prioNumOrLit ]
+		    	self.priority = { 'LOWEST' : -2, 'LOW' : -1, 'MEDIUM' : 0, 'HIGH' : 1, 'HIGHEST' : 2 }[ prioNumOrLit ]
 		
 		self.comment   = li.css( '#itemComment_'  + self.id + '::text' ).get( default = '' )
 		self.title     = li.css( '#itemName_'     + self.id + '::text' ).get( default = '' )
